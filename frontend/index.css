@@ -1,0 +1,172 @@
+body {
+    font-family: sans-serif;
+    background: "--bs-body-bg-rgb";
+}
+
+#title-app {
+    color: rgb(255, 255, 255);
+    margin: 1.5rem;
+}
+
+#app {
+    /* background-color: blueviolet; */
+    display: flex;
+}
+
+.form-add-task {
+    width: 25em;
+    height: max-content;
+    margin: 1rem;
+    border-radius: 1em;
+    /* background-color: aqua; */
+    display: flex;
+    flex-direction: column;
+    
+    /* background-color: aqua; */
+
+    & form{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 2em;
+        margin: 1em;
+
+        & #description {
+            height: 5em;
+        }
+
+        & input {
+            margin-bottom: 1em;
+        }
+    }
+}
+
+.list-tasks {
+    width: 60em;
+    min-height: 10em;
+    height: fit-content;
+    margin: 1rem;
+    border-radius: 1em;
+
+    padding: 1em;
+}
+
+.task {
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+
+    margin-top: 1em;
+    margin-bottom: 1em;
+    
+    & .art-task-top {
+
+        margin-left: 1em;
+
+        & h3 {
+            padding: .1em;
+            /* background-color: beige; */
+        }
+    
+        & .description {
+            max-width: 51em;
+            min-height: 5em;
+            padding: .5em;
+
+            border-radius: 10px;
+        }
+    }
+
+    & .art-task-bottom {
+        display: flex   ;
+        margin-left: 1em;
+        margin-bottom: 1em;
+        position: relative;
+
+        & p {
+            width: 3em;
+        }
+
+        
+        & button {
+            position: absolute;
+            width: 5rem;
+        }
+
+        & button.btn-danger {
+            right: 8em;
+        }
+
+        & button.btn-warning {
+            right: 1em;
+        }
+    }
+}
+
+.confirm-delete-task {
+    display: none;
+    position: fixed;
+
+    background-color: rgb(44, 41, 41);
+
+    padding: 1em;
+    border-radius: 10px;
+    top: 50%;
+
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+
+    z-index: 1;
+
+    & p {
+        margin-bottom: 1em;
+    }
+}
+
+section.confirm-put-task {
+
+    width: 30em;
+    min-height: max-content;
+    height: 24em;
+    margin: 1rem;
+    border-radius: 1em;
+
+    display: block;
+    position: fixed;
+
+    visibility: hidden;
+
+    background-color: rgb(44, 41, 41);
+
+    padding: 1em;
+    border-radius: 10px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    z-index: 1;
+
+    & input {
+        margin-bottom: 1em; 
+        margin-top: .2em;
+    }
+
+    & input#description-put {
+        min-height: 7em;
+    }
+
+    & #envFormPut {
+        margin-top: 1.5em;
+    }
+
+    & p {
+        position: fixed;
+
+        right: 1em;
+        color: red;
+
+        z-index: 1;
+        cursor: pointer;
+    }
+}
