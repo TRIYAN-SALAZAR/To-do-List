@@ -9,4 +9,6 @@ config.ini
 
 
 # Ignorar archivos generados por el sistema operativo
-# .DS_Store
+.DS_Store
+
+tokens.json
