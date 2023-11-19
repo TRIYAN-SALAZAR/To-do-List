@@ -39,19 +39,18 @@ control.createTask = async (req, res) => {
             completed: false
         });
 
-        newTask.save();
+        await newTask.save();
 
-        res.json({
+        await res.status(200).json({
             message: 'task created',
             id: newTask.id,
             completed: newTask.completed
         })
     }
     catch(error){
-        res.json({
-            message: error
+        res.status(400).json({
+            message: error.errors
         });
-        console.log(colors.red(error));
     }
 }
 
