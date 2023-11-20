@@ -5,28 +5,42 @@ const colors = require('colors');
 
 control.getTasks = async (req, res) => {
 
-    try {
-        const tasks = await taskSchema.find();
-        res.json(tasks)
-    }
-    catch (error) {
-        res.json({
-            message: error
+
+    const tasks = await taskSchema.find();
+
+    if(tasks.length === 0) {
+        return res.status(400).json({
+            message: 'tasks not found'
         });
-        console.log(colors.red(error), '-----------------------------------');
     }
+
+    res.status(200).json(tasks);
 }
 
 control.getOneTask = async (req, res) => {
+
+    const idTask = req.params.id;
+
     try {
-        const task = await taskSchema.findOne({ id: req.params.id });
-        res.json(task)
+        const task = await taskSchema.findOne({ id: idTask});
+
+        if(task === null) {
+            throw new Error('task not found');
+        }
+
+        res.status(200).json({task})
     }
     catch (error) {
-        res.json({
-            message: error
+
+        if(error.message === 'task not found') {
+            return res.status(404).json({
+                message: 'task not found'
+            });
+        }
+
+        res.status(500).json({
+            message: 'Server Internal Error'
         });
-        console.log(colors.red(error), '-----------------------------------');
     }
 }
 
