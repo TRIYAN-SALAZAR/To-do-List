@@ -5,7 +5,6 @@ const colors = require('colors');
 
 control.getTasks = async (req, res) => {
 
-
     const tasks = await taskSchema.find();
 
     if(tasks.length === 0) {
@@ -16,7 +15,6 @@ control.getTasks = async (req, res) => {
 
     res.status(200).json(tasks);
 }
-
 control.getOneTask = async (req, res) => {
 
     const idTask = req.params.id;
@@ -94,34 +92,64 @@ control.updateTask = async (req, res) => {
     try {
         const update = await taskSchema.updateOne({ id: id }, { title: title, description: description, completed: completed });
 
-        console.log(update);
+        if (update.matchedCount === 0) {
+            throw new Error(`Task don't exist`);
+        }
 
-        res.json({
+        if (!update) {
+            throw new Error('task not updated');            
+        }
+
+        res.status(200).json({
             message: 'task updated'
         })
     }
     catch (error) {
-        res.json({
-            message: error
-        });
+
+        if(error.message === `Task don't exist`) {
+            return res.status(404).json({
+                message: 'task not updated by not found task'
+            });
+        }
+
+        res.status(500).json({
+            message: 'Server Internal Error task not update'
+        })
         console.log(colors.red(error));
     }
 
 }
 
 control.deletedTask = async (req, res) => {
+
+    const id = req.body.id
     try {
-        await taskSchema.deleteOne({ id: req.body.id });
+        const deleteTask = await taskSchema.deleteOne({ id: id });
+
+        if (deleteTask.deletedCount === 0) {
+            throw new Error(`Task don't exist`);
+        }
+
+        if (!deleteTask) {
+            throw new Error('task not deleted');
+        }
+
+        res.status(200).json({
+            message: 'task deleted'
+        })
     }
     catch (error) {
-        res.json({
-            message: error
-        });
+        if(error.message === `Task don't exist`) {
+            return res.status(404).json({
+                message: 'task not deleted by not found task'
+            });
+        }
+
+        res.status(500).json({
+            message: 'Server Internal Error task not deleted'
+        })
         console.log(colors.red(error));
     }
-    res.json({
-        message: 'task deleted'
-    })
 }
 
 module.exports = control;
