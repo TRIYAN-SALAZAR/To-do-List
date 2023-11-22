@@ -9,7 +9,7 @@ control.getTasks = async (req, res) => {
 
     if(tasks.length === 0) {
         return res.status(400).json({
-            message: 'tasks not found'
+            error: 'tasks not found'
         });
     }
 
@@ -32,12 +32,12 @@ control.getOneTask = async (req, res) => {
 
         if(error.message === 'task not found') {
             return res.status(404).json({
-                message: 'task not found'
+                error: 'task not found'
             });
         }
 
         res.status(500).json({
-            message: 'Server Internal Error'
+            error: 'Server Internal Error'
         });
     }
 }
@@ -76,7 +76,7 @@ control.createTask = async (req, res) => {
     catch (error) {
         console.log(colors.red(error));
         res.status(500).json({
-            message: 'Internal Server Error at generate task'
+            error: 'Internal Server Error at generate task'
         });
     }
 }
@@ -108,12 +108,12 @@ control.updateTask = async (req, res) => {
 
         if(error.message === `Task don't exist`) {
             return res.status(404).json({
-                message: 'task not updated by not found task'
+                error: 'task not updated by not found task'
             });
         }
 
         res.status(500).json({
-            message: 'Server Internal Error task not update'
+            error: 'Server Internal Error task not update'
         })
         console.log(colors.red(error));
     }
@@ -141,12 +141,12 @@ control.deletedTask = async (req, res) => {
     catch (error) {
         if(error.message === `Task don't exist`) {
             return res.status(404).json({
-                message: 'task not deleted by not found task'
+                error: 'task not deleted by not found task'
             });
         }
 
         res.status(500).json({
-            message: 'Server Internal Error task not deleted'
+            error: 'Server Internal Error task not deleted'
         })
         console.log(colors.red(error));
     }
