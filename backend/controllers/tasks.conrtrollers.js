@@ -3,21 +3,25 @@ const taskSchema = require('../schemas/task');
 const colors = require('colors');
 const control = {};
 
+//modificar el correccto paso de los parametros para la funcion sendErrorResponse
+
+const sendErrorResponse = (res, {message = null, error = null}, status) => {
+    if (error) console.log(colors.red(error));
+
+    return res.status(status).json({
+        error: message
+    })
+}
+
 control.getTasks = async (req, res) => {
     try {
         const tasks = await taskSchema.find();
 
-        if (tasks.length === 0) {
-            return res.status(400).json({
-                error: 'tasks not found'
-            });
-        }
+        if (tasks.length === 0) return sendErrorResponse(res,{ message: 'tasks not found'}, 404);
 
         res.status(200).json(tasks);
     } catch (error) {
-        res.status(500).json({
-            error: 'Server Internal Error'
-        });
+        return sendErrorResponse(res, {message: 'Server Internal Error', error: error}, 500);
     }
 }
 control.getOneTask = async (req, res) => {
@@ -25,23 +29,12 @@ control.getOneTask = async (req, res) => {
         const idTask = req.params.id;
         const task = await taskSchema.findOne({ id: idTask });
 
-        if (task === null) {
-            throw new Error('task not found');
-        }
+        if (task === null) return sendErrorResponse(res, {message: 'task not found'}, 404);
 
         res.status(200).json({ task })
     }
     catch (error) {
-
-        if (error.message === 'task not found') {
-            return res.status(404).json({
-                error: 'task not found'
-            });
-        }
-
-        res.status(500).json({
-            error: 'Server Internal Error'
-        });
+        return sendErrorResponse(res, {message: 'task not found', error: error}, 500);
     }
 }
 
@@ -51,17 +44,11 @@ control.createTask = async (req, res) => {
     const descriptionTask = req.body.description;
 
     if (!titleTask && !descriptionTask) {
-        return res.status(400).json({
-            message: 'title and description are required'
-        });
+        return sendErrorResponse(res, {message: 'title and description are required'}, 400);
     } else if (!titleTask) {
-        return res.status(400).json({
-            message: 'title is required'
-        });
+        return sendErrorResponse(res, {message: 'title is required'}, 400);
     } else if (!descriptionTask) {
-        return res.status(400).json({
-            message: 'description is required'
-        });
+        return sendErrorResponse(res, {message: 'description is required'}, 400);
     }
 
     try {
@@ -85,10 +72,7 @@ control.createTask = async (req, res) => {
         }
     }
     catch (error) {
-
-        res.status(500).json({
-            error: 'Internal Server Error at generate task'
-        });
+        return sendErrorResponse(res, { error: error, message: 'task not created By Server Internal Error' }, 500);
     }
 }
 
@@ -102,30 +86,16 @@ control.updateTask = async (req, res) => {
         } = req.body;
         const update = await taskSchema.updateOne({ id: id }, { title: title, description: description, completed: completed });
 
-        if (update.matchedCount === 0) {
-            throw new Error(`Task don't exist`);
-        }
+        if (update.matchedCount === 0) return sendErrorResponse(res, {message: `task not updated by not found task`}, 404);
 
-        if (!update) {
-            throw new Error('task not updated');
-        }
+        if (!update) throw new Error('task not updated');
 
         res.status(200).json({
             message: 'task updated'
         })
     }
     catch (error) {
-
-        if (error.message === `Task don't exist`) {
-            return res.status(404).json({
-                error: 'task not updated by not found task'
-            });
-        }
-
-        res.status(500).json({
-            error: 'Server Internal Error task not update'
-        })
-        console.log(colors.red(error));
+        return sendErrorResponse(res, {message: 'Server Internal Error task not update', error: error}, 500);
     }
 }
 
@@ -134,28 +104,16 @@ control.deletedTask = async (req, res) => {
         const id = req.body.id
         const deleteTask = await taskSchema.deleteOne({ id: id });
 
-        if (deleteTask.deletedCount === 0) {
-            throw new Error(`Task don't exist`);
-        }
+        if (deleteTask.deletedCount === 0) return sendErrorResponse(res, {message: `task not deleted by not found task`}, 404);
 
-        if (!deleteTask) {
-            throw new Error('task not deleted');
-        }
+        if (!deleteTask) throw new Error('task not deleted');
 
         res.status(200).json({
             message: 'task deleted'
         })
     }
     catch (error) {
-        if (error.message === `Task don't exist`) {
-            return res.status(404).json({
-                error: 'task not deleted by not found task'
-            });
-        }
-
-        res.status(500).json({
-            error: 'Server Internal Error task not deleted'
-        })
+        return sendErrorResponse(res, {message: 'Server Internal Error task not deleted', error: error}, 500);
     }
 }
 
