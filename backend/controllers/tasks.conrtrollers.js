@@ -5,7 +5,7 @@ const control = {};
 
 //modificar el correccto paso de los parametros para la funcion sendErrorResponse
 
-const sendErrorResponse = (res, {message = null, error = null}, status) => {
+const sendErrorResponse = (res, { message = null, error = null }, status) => {
     if (error) console.log(colors.red(error));
 
     return res.status(status).json({
@@ -17,11 +17,11 @@ control.getTasks = async (req, res) => {
     try {
         const tasks = await taskSchema.find();
 
-        if (tasks.length === 0) return sendErrorResponse(res,{ message: 'tasks not found'}, 404);
+        if (tasks.length === 0) return sendErrorResponse(res, { message: 'tasks not found' }, 404);
 
         res.status(200).json(tasks);
     } catch (error) {
-        return sendErrorResponse(res, {message: 'Server Internal Error', error: error}, 500);
+        return sendErrorResponse(res, { message: 'Server Internal Error', error: error }, 500);
     }
 }
 control.getOneTask = async (req, res) => {
@@ -29,12 +29,12 @@ control.getOneTask = async (req, res) => {
         const idTask = req.params.id;
         const task = await taskSchema.findOne({ id: idTask });
 
-        if (task === null) return sendErrorResponse(res, {message: 'task not found'}, 404);
+        if (task === null) return sendErrorResponse(res, { message: 'task not found' }, 404);
 
         res.status(200).json({ task })
     }
     catch (error) {
-        return sendErrorResponse(res, {message: 'task not found', error: error}, 500);
+        return sendErrorResponse(res, { message: 'task not found', error: error }, 500);
     }
 }
 
@@ -44,11 +44,11 @@ control.createTask = async (req, res) => {
     const descriptionTask = req.body.description;
 
     if (!titleTask && !descriptionTask) {
-        return sendErrorResponse(res, {message: 'title and description are required'}, 400);
+        return sendErrorResponse(res, { message: 'title and description are required' }, 400);
     } else if (!titleTask) {
-        return sendErrorResponse(res, {message: 'title is required'}, 400);
+        return sendErrorResponse(res, { message: 'title is required' }, 400);
     } else if (!descriptionTask) {
-        return sendErrorResponse(res, {message: 'description is required'}, 400);
+        return sendErrorResponse(res, { message: 'description is required' }, 400);
     }
 
     try {
@@ -86,7 +86,7 @@ control.updateTask = async (req, res) => {
         } = req.body;
         const update = await taskSchema.updateOne({ id: id }, { title: title, description: description, completed: completed });
 
-        if (update.matchedCount === 0) return sendErrorResponse(res, {message: `task not updated by not found task`}, 404);
+        if (update.matchedCount === 0) return sendErrorResponse(res, { message: `task not updated by not found task` }, 404);
 
         if (!update) throw new Error('task not updated');
 
@@ -95,7 +95,7 @@ control.updateTask = async (req, res) => {
         })
     }
     catch (error) {
-        return sendErrorResponse(res, {message: 'Server Internal Error task not update', error: error}, 500);
+        return sendErrorResponse(res, { message: 'Server Internal Error task not update', error: error }, 500);
     }
 }
 
@@ -104,7 +104,7 @@ control.deletedTask = async (req, res) => {
         const id = req.body.id
         const deleteTask = await taskSchema.deleteOne({ id: id });
 
-        if (deleteTask.deletedCount === 0) return sendErrorResponse(res, {message: `task not deleted by not found task`}, 404);
+        if (deleteTask.deletedCount === 0) return sendErrorResponse(res, { message: `task not deleted by not found task` }, 404);
 
         if (!deleteTask) throw new Error('task not deleted');
 
@@ -113,7 +113,7 @@ control.deletedTask = async (req, res) => {
         })
     }
     catch (error) {
-        return sendErrorResponse(res, {message: 'Server Internal Error task not deleted', error: error}, 500);
+        return sendErrorResponse(res, { message: 'Server Internal Error task not deleted', error: error }, 500);
     }
 }
 
