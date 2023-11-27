@@ -1,9 +1,10 @@
 const {Router} = require('express');
 const router = Router();
 
-const { createCollectionForTasks, addTaskToCollection } = require('../controllers/tasksCollections.controller');
+const { createCollectionTasks, getCollectionsTasks } = require('../controllers/tasksCollections.controller');
 
 router.route('/')
-    .post(createCollectionForTasks)
+    .get(getCollectionsTasks)
+    .post(createCollectionTasks)
 
 module.exports = router

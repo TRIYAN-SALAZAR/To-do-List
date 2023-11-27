@@ -15,7 +15,7 @@ app.use((req, res, next) => {
     next();
 });
 
-app.use('/', require('./routes/tasks.router'));
+app.use('/tasks', require('./routes/tasks.router'));
 app.use('/collections', require('./routes/tasksCollections'));
 
 app.listen(3000, () => {
