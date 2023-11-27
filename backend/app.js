@@ -16,6 +16,7 @@ app.use((req, res, next) => {
 });
 
 app.use('/', require('./routes/tasks.router'));
+app.use('/collections', require('./routes/tasksCollections'));
 
 app.listen(3000, () => {
     console.log('Server running on port 3000'.cyan);
