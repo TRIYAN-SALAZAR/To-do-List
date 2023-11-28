@@ -17,8 +17,6 @@ control.getTasks = async (req, res) => {
     try {
         const tasks = await taskSchema.find();
 
-        if (tasks.length === 0) return sendErrorResponse(res, { message: 'tasks not found' }, 404);
-
         res.status(200).json(tasks);
     } catch (error) {
         return sendErrorResponse(res, { message: 'Server Internal Error', error: error }, 500);

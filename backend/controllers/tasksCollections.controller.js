@@ -7,10 +7,6 @@ control.getCollectionsTasks = async (req, res) => {
     try {
         const collections = await collectionSchema.find();
 
-        // if (collections.length === 0) {
-        //     res.status(404).json({ error: 'collections not found' });
-        // }
-        console.log(JSON.stringify(collections));
         return res.status(200).json(collections);
     }
     catch (error) {
@@ -43,9 +39,29 @@ control.createCollectionTasks = async (req, res) => {
     }
 }
 
-control.updateCollectionTasks = async (req, res) => {
-    
+control.addTaskToCollection = async (req, res) => {
+    const taskID = req.body.taskID;
+    const collectionID = req.body.collectionID;
+
+    try {
+        if(!taskID || !collectionID) return res.status(400).json({message: 'taskID and collectionID are required'});
+
+        const addTaskToCollection = await collectionSchema.updateOne({ _id: ObjectId(collectionID) }, { $push: { tasks: ObjectId(taskID) } });
+
+        if (!addTaskToCollection) {
+            throw new Error('task not added to collection');
+        }
+
+        return res.status(200).json({ message: 'task added to collection' });
+    }
+    catch (error) {
+        return res.status(500).json({ 
+            error: 'Server Internal Error',
+            descriptionError: error.message
+        });
+    }
 }
+
 
 control.deleteCollectionTasks = async (req, res) => {
 
