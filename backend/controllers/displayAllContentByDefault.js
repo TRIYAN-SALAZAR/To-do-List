@@ -5,7 +5,7 @@ const collectionSchema = require('../schemas/tasksCollections');
 
 const control = {};
 
-control.getTasks = async (req, res) => {
+control.showAll = async (req, res) => {
     try {
         const tasks = await taskSchema.find();
         const collections = await collectionSchema.find()
@@ -19,3 +19,9 @@ control.getTasks = async (req, res) => {
         return res.status(500).json({ error: 'Server Internal Error' });
     }
 }
+
+control.showTaskToCollection = async (req, res) => {
+
+}
+
+module.exports = control;

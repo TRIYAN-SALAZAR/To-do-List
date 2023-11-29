@@ -3,8 +3,6 @@ const taskSchema = require('../schemas/task');
 const colors = require('colors');
 const control = {};
 
-//modificar el correccto paso de los parametros para la funcion sendErrorResponse
-
 const sendErrorResponse = (res, { message = null, error = null }, status) => {
     if (error) console.log(colors.red(error));
 
