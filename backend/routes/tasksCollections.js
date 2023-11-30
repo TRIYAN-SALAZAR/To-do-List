@@ -6,7 +6,8 @@ const {
     createCollection,
     deleteCollection,
     updateCollection,
-    addTaskToCollection 
+    addTaskToCollection,
+    deleteTaskToCollection
 } = require('../controllers/tasksCollections.controller');
 
 router.route('/')
@@ -17,5 +18,6 @@ router.route('/')
 
 router.route('/:idCollection')
     .put(addTaskToCollection)
+    .delete(deleteTaskToCollection)
 
 module.exports = router

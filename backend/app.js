@@ -15,6 +15,7 @@ app.use((req, res, next) => {
     next();
 });
 
+app.use('/', require('./routes/showTasksAndCollections'))
 app.use('/tasks', require('./routes/tasks.router'));
 app.use('/collections', require('./routes/tasksCollections'));
 

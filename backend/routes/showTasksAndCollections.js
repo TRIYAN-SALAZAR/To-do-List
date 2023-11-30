@@ -8,7 +8,7 @@ const {
 router.route('/')
     .get(showAll)
 
-router.route('/tasksToCollections/:idCollection')
+router.route('/:idCollection')
     .get(showTaskToCollection)
 
 module.exports = router;

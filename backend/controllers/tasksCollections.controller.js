@@ -82,12 +82,13 @@ control.updateCollection = async (req, res) => {
 
 control.addTaskToCollection = async (req, res) => {
     const taskID = req.body.taskID;
-    const collectionID = req.body.collectionID;
+    const collectionID = req.params.idCollection;
 
     try {
-        if(!taskID || !collectionID) return res.status(400).json({message: 'taskID and collectionID are required'});
+        if(!taskID) return res.status(400).json({message: 'taskID is required'});
 
-        const addTaskToCollection = await collectionSchema.updateOne({ _id: collectionID }, { $push: { tasks: new Types.ObjectId(taskID) } });
+        // const addTaskToCollection = await collectionSchema.updateOne({ _id: collectionID }, { $push: { tasks: new Types.ObjectId(taskID) } });
+        const addTaskToCollection = await collectionSchema.updateOne({ _id: collectionID }, { $push: { tasks: taskID } });
 
         if (!addTaskToCollection) {
             throw new Error('task not added to collection');
@@ -104,7 +105,23 @@ control.addTaskToCollection = async (req, res) => {
 }
 
 control.deleteTaskToCollection = async (req, res) =>{
-    
+    const taskID = req.body.taskID;
+    const collection = req.params.idCollection
+
+    try {
+        if(!taskID) return res.status(400).json({message: 'taskID is required'});
+
+        const deleteTaskToCollection = await collectionSchema.updateOne({ _id: collection }, { $pull: { tasks: taskID } });
+        if (!deleteTaskToCollection) throw new Error('task not deleted');
+
+        return res.status(200).json({ message: 'task deleted' });
+    }
+    catch (error) {
+        return res.status(500).json({ 
+            error: 'Server Internal Error',
+            descriptionError: error.message
+        });
+    }
 }
 
 module.exports = control;

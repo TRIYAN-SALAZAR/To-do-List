@@ -21,7 +21,17 @@ control.showAll = async (req, res) => {
 }
 
 control.showTaskToCollection = async (req, res) => {
+    const collectionID = req.params.idCollection;
 
+    try {
+        const collection = await collectionSchema.findOne({_id: collectionID});
+
+        console.log(collection);
+        return res.status(200).json({collection: collection})
+    }
+    catch(error) {
+        return res.status(500).json({ error: 'Server Internal Error' });
+    }
 }
 
 module.exports = control;
