@@ -11,6 +11,7 @@ const sendErrorResponse = (res, { message = null, error = null }, status) => {
     })
 }
 
+
 control.getTasks = async (req, res) => {
     try {
         const tasks = await taskSchema.find();
