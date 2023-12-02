@@ -3,6 +3,9 @@
 const taskSchema = require('../schemas/task');
 const collectionSchema = require('../schemas/tasksCollections');
 
+const {} = require('./tasksCollections.controller');
+const {} require('./tasks.controller');
+
 const control = {};
 
 control.showAll = async (req, res) => {
