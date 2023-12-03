@@ -4,7 +4,7 @@ const taskSchema = require('../schemas/task');
 const collectionSchema = require('../schemas/tasksCollections');
 
 const { getCollections } = require('./tasksCollections.controller');
-const { getOneTask } require('./tasks.controller');
+const { getOneTask } = require('./tasks.controller');
 
 const control = {};
 
@@ -31,11 +31,11 @@ control.showTaskToCollection = async (req, res) => {
         const TASKS = [];
 
         for(let task of collection.tasks) {
-           let aux = getOneTask(task);
+           let aux = await taskSchema.findOne({ _id: task });
            TASKS.push(aux);
         }
 
-        return res.status(200).json(tasks: TASKS)
+        return res.status(200).json({tasks: TASKS})
     }
     catch(error) {
         return res.status(500).json({ error: 'Server Internal Error' });

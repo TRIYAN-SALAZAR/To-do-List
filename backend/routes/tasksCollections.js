@@ -16,7 +16,7 @@ router.route('/')
     .put(updateCollection)
     .delete(deleteCollection)
 
-router.route('/collectionShow/:idCollection')
+router.route('/add-task/:idCollection')
     .put(addTaskToCollection)
     .delete(deleteTaskToCollection)
 

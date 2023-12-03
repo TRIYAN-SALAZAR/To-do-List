@@ -87,8 +87,7 @@ control.addTaskToCollection = async (req, res) => {
     try {
         if(!taskID) return res.status(400).json({message: 'taskID is required'});
 
-        // const addTaskToCollection = await collectionSchema.updateOne({ _id: collectionID }, { $push: { tasks: new Types.ObjectId(taskID) } });
-        const addTaskToCollection = await collectionSchema.updateOne({ _id: collectionID }, { $push: { tasks: taskID } });
+        const addTaskToCollection = await collectionSchema.updateOne({ _id: collectionID }, { $push: { tasks: new Types.ObjectId(taskID) } });
 
         if (!addTaskToCollection) {
             throw new Error('task not added to collection');
