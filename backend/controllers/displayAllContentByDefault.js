@@ -1,10 +1,8 @@
 //fecha limite de implementacion sabado 02 de diciembre del 2023 a las 22:00
+//Las implentaciones se realizaron con exito, ya el pedo es si se generan bugs o no, O nada sjdasfjkas
 
 const taskSchema = require('../schemas/task');
 const collectionSchema = require('../schemas/tasksCollections');
-
-const { getCollections } = require('./tasksCollections.controller');
-const { getOneTask } = require('./tasks.controller');
 
 const control = {};
 
