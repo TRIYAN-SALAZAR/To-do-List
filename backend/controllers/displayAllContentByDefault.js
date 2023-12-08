@@ -1,5 +1,4 @@
-//fecha limite de implementacion sabado 02 de diciembre del 2023 a las 22:00
-//Las implentaciones se realizaron con exito, ya el pedo es si se generan bugs o no, O nada sjdasfjkas
+// creo que se tendra que adaptar el backend con el funcionamiento del frontend, ya lo ire viendo mas andelante
 
 const taskSchema = require('../schemas/task');
 const collectionSchema = require('../schemas/tasksCollections');
