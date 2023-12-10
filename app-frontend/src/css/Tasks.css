@@ -14,6 +14,8 @@ section.Task {
     margin-right: 1rem;
 
     position: relative;
+
+    cursor: pointer;
 }
 
 h5 {

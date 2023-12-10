@@ -23,17 +23,7 @@ export default function NavBar() {
                 <CollectionForNav />
                 <CollectionForNav />
                 <CollectionForNav />
-                <CollectionForNav />
-                <CollectionForNav />
-                <CollectionForNav />
-                <CollectionForNav />
-                <CollectionForNav />
-                <CollectionForNav />
-                <CollectionForNav />
-                <CollectionForNav />
-                <CollectionForNav />
-                <CollectionForNav />
-                <CollectionForNav />
+
             </section>
         </nav>
     )
@@ -41,9 +31,11 @@ export default function NavBar() {
 
 function CollectionForNav() {
     return (
-        <section className='collection'>
+        <>
             <hr/>
-            <h3>title for collection</h3>            
-        </section>
+            <section className='collection'>
+                <h3>title for collection</h3>            
+            </section>
+        </>
     )
 }

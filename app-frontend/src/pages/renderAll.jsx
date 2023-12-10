@@ -13,8 +13,13 @@ export default function RenderAll() {
             <Collection />
             <Collection />
             <RenderTasks />
+            <RenderTasks />
             <Collection />
             <Collection />
+            <Collection />
+            <RenderTasks />
+            <RenderTasks />
+            <RenderTasks />
             <Collection />
             <Collection />
             <Collection />
