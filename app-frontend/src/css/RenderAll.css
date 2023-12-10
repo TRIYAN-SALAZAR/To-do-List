@@ -4,16 +4,10 @@
 
     max-width: max-content;
     max-height: max-content;
-
+    
     display: flexbox;
-
     flex-direction: column;
-
-
-
-    background-color: rgb(166, 0, 216);
     float: right;
-
     margin: 10px;
 }
 

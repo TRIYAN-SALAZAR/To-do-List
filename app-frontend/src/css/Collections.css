@@ -1,6 +1,4 @@
 section.Collection {
-    display: flexbox;
-
     width: 15vw;
     height: 15vh;
 
@@ -13,68 +11,62 @@ section.Collection {
 
     margin-left: 1rem;
     margin-right: 1rem;
+
+    display: flexbox;
+    position: relative;
+
+    border-radius: 1rem;
 }
 
 /* dibujar  una especie de ventana en la coleccion*/
 div.relleno {
-    min-width: 25%;
-    max-height: 25%;
+    width: 7.5vw;
+    height: 7.5vh;
 
-    display: flex;
+    padding: 0;
+    margin: 0;
 
-    align-items: center;
-    justify-content: center;
+    position: absolute;
 
-    position: relative;
-
-    border-radius: 50%;
-
-    border: 2px solid black;
-    background-color: rgb(0, 216, 180);
-
-    cursor: pointer;
+    border: 3px solid black;
+    border-radius: 1rem;
 
     user-select: none;
 
-    overflow: hidden;
+    cursor: pointer;
+    color: white;
 
-    transition: 0.5s;
+    background-color: rgb(166, 0, 216);
+}
 
-    &:hover {
-        background-color: rgb(0, 180, 216);
-    }
+div.relleno:nth-child(1) {
+    z-index: 1;
+    top: 0;
+    left: 0;
+}
 
-    &:active {
-        background-color: rgb(0, 216, 180);
-    }
+div.relleno:nth-child(2) {
+    z-index: 1;
+    top: 0;
+    left: 7.5vw;
+}
 
-    &:focus {
-        background-color: rgb(0, 180, 216);
-    }
+div.relleno:nth-child(3) {
+    z-index: 1;
+    top: 7.5vh;
+    left: 0;
+}
 
-    &:active:focus {
-        background-color: rgb(0, 216, 180);
-    }
-
-
-    &:focus-within {
-        background-color: rgb(0, 180, 216);
-    }
-
-    &:active:focus-within {
-        background-color: rgb(0, 216, 180);
-    }
-
-
-    &:focus-within:focus {
-        background-color: rgb(0, 180, 216);
-    }
-
+div.relleno:nth-child(4) {
+    z-index: 1;
+    top: 7.5vh;
+    left: 7.5vw;
 }
 
 h5 {
-        position: relative;
-        top: 17vh;
+    position: absolute;
+    top: 16vh;
 
-        text-align: center;
+    width: 100%;
+    text-align: center;
 }
