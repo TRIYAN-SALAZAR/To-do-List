@@ -8,10 +8,12 @@ const control = {};
 control.showAll = async (req, res) => {
     try {
         const tasks = await taskSchema.find();
-        const collections = await collectionSchema.find()
+        const collections = await collectionSchema.find();
+
+        const tasksFilters = await tasks.filter(t => t.defaultCollection === true);
 
         return res.status(200).json({
-            tasks: tasks,
+            tasks: tasksFilters,
             collections: collections
         })
     }

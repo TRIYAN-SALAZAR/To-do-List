@@ -17,7 +17,8 @@ const taskSchema = new Schema({
         type: Date,
         default: Date.now
     },
-    completed: Boolean
+    completed: Boolean,
+    defaultCollection: Boolean
 });
 
 module.exports = model('tasks', taskSchema);
