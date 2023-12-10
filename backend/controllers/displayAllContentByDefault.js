@@ -1,20 +1,19 @@
-//fecha limite de implementacion sabado 02 de diciembre del 2023 a las 22:00
+// creo que se tendra que adaptar el backend con el funcionamiento del frontend, ya lo ire viendo mas andelante
 
 const taskSchema = require('../schemas/task');
 const collectionSchema = require('../schemas/tasksCollections');
-
-const { getCollections } = require('./tasksCollections.controller');
-const { getOneTask } = require('./tasks.controller');
 
 const control = {};
 
 control.showAll = async (req, res) => {
     try {
         const tasks = await taskSchema.find();
-        const collections = await collectionSchema.find()
+        const collections = await collectionSchema.find();
+
+        const tasksFilters = await tasks.filter(t => t.defaultCollection === true);
 
         return res.status(200).json({
-            tasks: tasks,
+            tasks: tasksFilters,
             collections: collections
         })
     }

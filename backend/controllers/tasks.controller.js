@@ -39,6 +39,7 @@ control.createTask = async (req, res) => {
 
     const titleTask = req.body.title;
     const descriptionTask = req.body.description;
+    const collection = req.body.collection;
 
     if (!titleTask && !descriptionTask) {
         return sendErrorResponse(res, { message: 'title and description are required' }, 400);
@@ -53,7 +54,8 @@ control.createTask = async (req, res) => {
             id: idGenerate(),
             title: titleTask,
             description: descriptionTask,
-            completed: false
+            completed: false,
+            defaultCollection: collection != '' ? true : false 
         });
 
         const task = await newTask.save();
