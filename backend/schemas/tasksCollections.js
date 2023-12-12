@@ -12,6 +12,10 @@ const collectionSchema = new Schema({
     tasks: {
         type: Array,
         default: []
+    },
+    defaultCollection: {
+        type: Boolean,
+        default: true
     }
 });
 

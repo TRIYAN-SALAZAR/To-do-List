@@ -10,11 +10,12 @@ control.showAll = async (req, res) => {
         const tasks = await taskSchema.find();
         const collections = await collectionSchema.find();
 
-        const tasksFilters = await tasks.filter(t => t.defaultCollection === true);
+        const tasksFilter = tasks.filter(t => t.defaultCollection === true);
+        const collectionsFilter = collections.filter(c => c.defaultCollection === true);
 
         return res.status(200).json({
-            tasks: tasksFilters,
-            collections: collections
+            tasks: tasksFilter,
+            collections: collectionsFilter,
         })
     }
     catch (error) {
