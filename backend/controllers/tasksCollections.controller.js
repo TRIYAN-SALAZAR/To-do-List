@@ -1,4 +1,5 @@
 const collectionSchema = require('../schemas/tasksCollections');
+const taskSchema = require('../schemas/task')
 const { Types } = require('mongoose');
 
 const control = {};
@@ -88,11 +89,10 @@ control.addTaskToCollection = async (req, res) => {
         if(!taskID) return res.status(400).json({message: 'taskID is required'});
 
         const addTaskToCollection = await collectionSchema.updateOne({ _id: collectionID }, { $push: { tasks: new Types.ObjectId(taskID) } });
+        const updateDefaultCollection = await taskSchema.updateOne({_id: taskID}, {$set : {defaultCollection: false}});
 
-        if (!addTaskToCollection) {
-            throw new Error('task not added to collection');
-        }
-
+        if (!addTaskToCollection || !updateDefaultCollection) throw new Error('task not added to collection or propety error update');
+        
         return res.status(200).json({ message: 'task added to collection' });
     }
     catch (error) {
@@ -111,7 +111,9 @@ control.deleteTaskToCollection = async (req, res) =>{
         if(!taskID) return res.status(400).json({message: 'taskID is required'});
 
         const deleteTaskToCollection = await collectionSchema.updateOne({ _id: collection }, { $pull: { tasks: taskID } });
-        if (!deleteTaskToCollection) throw new Error('task not deleted');
+        const updateDefaultCollection = await taskSchema.updateOne({_id: taskID}, {$set : {defaultCollection: true}});
+
+        if (!deleteTaskToCollection || !updateDefaultCollection) throw new Error('task not deleted or propety of task dont update');
 
         return res.status(200).json({ message: 'task deleted' });
     }
