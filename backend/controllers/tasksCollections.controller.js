@@ -44,6 +44,13 @@ control.deleteCollection = async (req, res) => {
     try {
         if(!id) return res.status(400).json({message: 'id is required to delete the collection'});
 
+        //puede haber un error
+        const { tasks } = await collectionSchema.find({_id: id});
+        tasks.map(async t => {
+            const updateTaskInDefaultCollection = await taskSchema.updateOne({_id: t}, {$set: {defaultCollection: true}})
+            if(!updateTaskInDefaultCollection) throw new Error('Task not update')
+        })
+
         const deleteCollection = await collectionSchema.deleteOne({ _id: id });
 
         if(!deleteCollection) throw new Error('The collection could not be deleted');
