@@ -89,18 +89,29 @@ control.updateCollection = async (req, res) => {
 }
 
 control.addTaskToCollection = async (req, res) => {
-    const taskID = req.body.taskID;
+    const taskID = (req.body.taskID);
     const collectionID = req.params.idCollection;
 
+    
     try {
         if(!taskID) return res.status(400).json({message: 'taskID is required'});
 
-        const addTaskToCollection = await collectionSchema.updateOne({ _id: collectionID }, { $push: { tasks: new Types.ObjectId(taskID) } });
-        const updateDefaultCollection = await taskSchema.updateOne({_id: taskID}, {$set : {defaultCollection: false}});
+        const { tasks } = await collectionSchema.findOne({_id: collectionID});
 
-        if (!addTaskToCollection || !updateDefaultCollection) throw new Error('task not added to collection or propety error update');
-        
-        return res.status(200).json({ message: 'task added to collection' });
+        const taskExistInToCollection = tasks.find( t => (t) == taskID);
+
+        if(taskExistInToCollection == taskID) {
+            return res.status(200).json({
+                message: 'no se puede agregar este recurso porque ya existe en la coleccion'
+            })
+        }else {
+            const addTaskToCollection = await collectionSchema.updateOne({ _id: collectionID }, { $push: { tasks: new Types.ObjectId(taskID) } });
+            const updateDefaultCollection = await taskSchema.updateOne({_id: taskID}, {$set : {defaultCollection: false}});
+    
+            if (!addTaskToCollection || !updateDefaultCollection) throw new Error('task not added to collection or propety error update');
+            
+            return res.status(200).json({ message: 'task added to collection' });
+        }
     }
     catch (error) {
         return res.status(500).json({ 
