@@ -1,0 +1,16 @@
+#render-all {
+    min-width: 85vw;
+    min-height: 100vh;
+
+    max-width: max-content;
+    max-height: max-content;
+    
+    display: flexbox;
+    flex-direction: column;
+    float: right;
+    margin: 10px;
+
+
+    position: relative;
+}
+

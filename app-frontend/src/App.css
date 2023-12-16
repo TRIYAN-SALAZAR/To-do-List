@@ -1,0 +1,15 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+
+div#root {
+    min-width: 100vw;
+    min-height: 100vh;
+
+    max-height: max-content;
+    max-width: max-content;
+
+    display: flex;
+}

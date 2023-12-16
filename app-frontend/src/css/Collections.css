@@ -1,0 +1,72 @@
+section.Collection {
+    width: 15vw;
+    height: 15vh;
+
+    background-color: beige;
+
+    float: left;
+
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+
+    margin-left: 1rem;
+    margin-right: 1rem;
+
+    display: flexbox;
+    position: relative;
+
+    border-radius: 1rem;
+}
+
+/* dibujar  una especie de ventana en la coleccion*/
+div.relleno {
+    width: 7.5vw;
+    height: 7.5vh;
+
+    padding: 0;
+    margin: 0;
+
+    position: absolute;
+
+    border: 3px solid black;
+    border-radius: 1rem;
+
+    user-select: none;
+
+    cursor: pointer;
+    color: white;
+
+    background-color: rgb(166, 0, 216);
+}
+
+div.relleno:nth-child(1) {
+    z-index: 1;
+    top: 0;
+    left: 0;
+}
+
+div.relleno:nth-child(2) {
+    z-index: 1;
+    top: 0;
+    left: 7.5vw;
+}
+
+div.relleno:nth-child(3) {
+    z-index: 1;
+    top: 7.5vh;
+    left: 0;
+}
+
+div.relleno:nth-child(4) {
+    z-index: 1;
+    top: 7.5vh;
+    left: 7.5vw;
+}
+
+h5 {
+    position: absolute;
+    top: 16vh;
+
+    width: 100%;
+    text-align: center;
+}
