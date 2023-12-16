@@ -40,22 +40,34 @@ control.createCollection = async (req, res) => {
 
 control.deleteCollection = async (req, res) => {
     const id = req.body.id;
+    const removeTasksFromCollection = req.body.removeTasks;
 
     try {
         if(!id) return res.status(400).json({message: 'id is required to delete the collection'});
-
-        //puede haber un error
-        const { tasks } = await collectionSchema.find({_id: id});
-        tasks.map(async t => {
-            const updateTaskInDefaultCollection = await taskSchema.updateOne({_id: t}, {$set: {defaultCollection: true}})
-            if(!updateTaskInDefaultCollection) throw new Error('Task not update')
-        })
-
         const deleteCollection = await collectionSchema.deleteOne({ _id: id });
+        const { tasks } = await collectionSchema.find({_id: id});
 
-        if(!deleteCollection) throw new Error('The collection could not be deleted');
-
-        return res.status(200).json({message: 'The collection was successfully deleted'});
+        if(removeTasksFromCollection) {
+            tasks.map(async t => {
+                const deleteTasksTheCollection = await taskSchema.deleteOne({_id: t})
+                if(!deleteTasksTheCollection) throw new Error('the task has not been deleted')
+            })
+        
+            if(!deleteCollection) throw new Error('The collection could not be deleted');
+    
+            return res.status(200).json({message: 'The collection was successfully deleted'});
+        }
+        else {
+            //puede haber un error
+            tasks.map(async t => {
+                const updateTaskInDefaultCollection = await taskSchema.updateOne({_id: t}, {$set: {defaultCollection: true}})
+                if(!updateTaskInDefaultCollection) throw new Error('Task not update')
+            })
+    
+            if(!deleteCollection) throw new Error('The collection could not be deleted');
+    
+            return res.status(200).json({message: 'The collection was successfully deleted'});
+        }
     }
     catch (error) {
         return res.status(500).json({
