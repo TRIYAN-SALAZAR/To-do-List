@@ -5,8 +5,10 @@
     max-width: max-content;
     max-height: max-content;
     
-    display: flexbox;
-    flex-direction: column;
+    display: flex;
+
+    flex-wrap: wrap;
+
     float: right;
     margin: 10px;
 
