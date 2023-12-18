@@ -120,9 +120,11 @@ section#collections {
         }
 
     }
-}
 
-.collection::hover {
-    background-color: rgb(216, 197, 197)
+    
+}    
+
+.collection:hover {
+    background-color: rgb(165, 165, 165)
 }
 

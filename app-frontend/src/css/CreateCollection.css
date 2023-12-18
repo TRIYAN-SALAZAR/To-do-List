@@ -1,0 +1,103 @@
+section.CreateCollectionForm {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    width: 45rem;
+    height: 28rem;
+
+    background-color: red;
+
+    display: flex;
+    flex-direction: column;
+
+    z-index: 10;
+
+    border-radius: 1rem;
+    padding: 15px;
+
+}
+
+section.CreateCollectionForm h3 {
+    width: 100%;
+    text-align: center;
+
+    margin: 0;
+    margin-bottom: 1rem;
+
+    font-size: 1.5rem;
+
+    color: white;
+    text-overflow: ellipsis;
+}
+
+section.CreateCollectionForm form {
+    display: flex;
+    flex-direction: row;
+
+    padding-top: 15px;
+    padding-bottom: 15px;
+
+    width: 100%;
+    align-items: center;
+
+    background-color: white;
+
+    border-radius: 1rem;
+
+    z-index: 10;
+    position: relative;
+
+}
+
+form section.createCollection {
+    width: 50%;
+    height: 23rem;
+
+    display: flex;
+    flex-direction: column; 
+
+    background-color: rgb(255, 166, 0);
+}
+
+form section.addTasksToCollectionOptional {
+    width: 50%;
+    height: 23rem;
+
+    display: flex;
+    flex-direction: column;
+
+    background-color: rgb(255, 193, 79);
+}
+
+form section.listTasksForAdd {
+    display: flex;
+    flex-direction: column;
+
+    width: 100%;
+    max-height: 23rem;
+
+    overflow-y: scroll;
+    background-color: rgb(192, 154, 84);
+
+}
+
+form section.taskForAdd {
+    display: flex;
+    width: 95%;
+
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 5px;
+    padding: 5px;
+
+    background-color: rgb(255, 166, 0);
+    border-radius: 1rem;
+
+    & input {
+        margin-left: 5px;
+        margin-right: 5px;
+    }
+    
+}

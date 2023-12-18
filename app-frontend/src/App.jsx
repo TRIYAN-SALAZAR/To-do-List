@@ -1,5 +1,5 @@
 import NavBar from './components/nav-bar';
-import RenderAll from './pages/renderAll';
+import RenderAll from './pages/RenderAll';
 
 import './App.css'
 

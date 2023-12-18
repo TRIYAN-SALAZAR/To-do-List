@@ -1,0 +1,41 @@
+section.CreateTaskForm {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    width: 25rem;
+    height: 25rem;
+
+    background-color: red;
+
+    display: flex;
+    flex-direction: column;
+
+    z-index: 10;
+
+    border-radius: 1rem;
+    padding: 15px;
+
+    visibility: hidden;
+
+}
+
+section.CreateTaskForm form {
+    display: flex;
+    flex-direction: column;
+
+    padding-top: 15px;
+    padding-bottom: 15px;
+
+    width: 100%;
+    align-items: center;
+
+    background-color: white;
+
+    border-radius: 1rem;
+
+    z-index: 10;
+    position: relative;
+
+}

@@ -16,7 +16,7 @@ export default function NavBar() {
                 <button><img src={deleteTasksOrCollectionsIcons} alt="delete_tasks_or_collections.svg" /></button>
             </section>
             <section id='collections'>
-                <CollectionForNav />
+                <DefaultRenderAll />
                 <CollectionForNav />
                 <CollectionForNav />
                 <CollectionForNav />
@@ -35,6 +35,17 @@ function CollectionForNav() {
             <hr/>
             <section className='collection'>
                 <h3>title for collection</h3>            
+            </section>
+        </>
+    )
+}
+
+function DefaultRenderAll() {
+    return (
+        <>
+            <hr/>
+            <section className='collection'>
+                <h3>Show All</h3>            
             </section>
         </>
     )
