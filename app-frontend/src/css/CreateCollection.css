@@ -72,24 +72,27 @@ form section.addTasksToCollectionOptional {
 }
 
 form section.listTasksForAdd {
-    display: flex;
-    flex-direction: column;
+    display: block;
 
-    width: 100%;
+    max-width: 100%;
     max-height: 23rem;
 
-    overflow-y: scroll;
+    overflow-y: auto;
     background-color: rgb(192, 154, 84);
 
 }
 
 form section.taskForAdd {
     display: flex;
+    flex-direction: row;
     width: 95%;
 
     align-items: center;
     justify-content: center;
-    margin-bottom: 5px;
+
+    margin-bottom: .5rem;
+    margin-top: .5rem;
+    margin-left: 1%;
     padding: 5px;
 
     background-color: rgb(255, 166, 0);
@@ -100,4 +103,32 @@ form section.taskForAdd {
         margin-right: 5px;
     }
     
+}
+
+section section.Close-Form-Collection-Create{
+    position: absolute;
+    top: .5rem;
+    right: .5rem;
+
+    width: 2rem;
+    height: 2rem;
+
+    cursor: pointer;
+
+    border: 2px solid black;
+    border-radius: 2rem;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    & p {
+        margin: 0;
+        padding: 0;
+
+        font-size: 2rem;
+        color: black;
+
+        user-select: none;
+    }
 }
