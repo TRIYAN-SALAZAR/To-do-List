@@ -1,7 +1,7 @@
 import Tasks from "../components/Tasks";
 import Collection from "../components/Collections";
-import CreateCollection from "../forms/CreateCollection";
-import CreateTask from "../forms/CreateTask";
+import CreateCollection from "../forms/CreateCollectionForm";
+import CreateTask from "../forms/CreateTaskForm";
 
 import "../css/RenderAll.css";
 

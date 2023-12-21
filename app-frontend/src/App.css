@@ -3,6 +3,14 @@
     padding: 0;
 }
 
+:root {
+    --rojo-chido: #E63946;
+    --azul-chido: #457B9D;
+    --blanco-principal: #F1FAEE;
+    --negro-complementario: #1D3557;
+    --azul-resalta: #A8DADC;
+}
+
 
 div#root {
     min-width: 100vw;

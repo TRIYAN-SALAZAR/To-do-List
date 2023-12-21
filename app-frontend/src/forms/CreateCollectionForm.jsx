@@ -1,4 +1,4 @@
-import "../css/CreateCollection.css";
+import "../css/CreateCollectionForm.css";
 
 export default function CreateCollection() {
   return (

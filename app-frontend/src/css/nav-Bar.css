@@ -1,5 +1,5 @@
 nav {
-    background-color: grey;
+    background-color: var(--azul-chido);
     min-width: 10vw;
     min-height: 100vh;
     max-height: max-content;
@@ -40,9 +40,14 @@ img {
     flex-direction: column;
 
     align-items: center;
+
+    max-height: 100%;
 }
 
 section#collections {
+    max-width: 10vw;
+    min-width: 10vw;
+
     width: 100%;
     height: 100%;
 
@@ -50,7 +55,11 @@ section#collections {
     flex-direction: column;
 
     align-items: center;
-    position: relative;
+    position: absolute;
+
+    top: 15rem;
+
+
     margin-top: 1rem;
 
     & hr{
@@ -64,7 +73,7 @@ section#collections {
 
 .collection {
     width: 100%;
-    height: 7vh;
+    height: 2rem;
 
     display: flex;
     flex-direction: column;
@@ -124,7 +133,8 @@ section#collections {
     
 }    
 
-.collection:hover {
-    background-color: rgb(165, 165, 165)
+.collection:hover, .collection:hover h3{
+    background-color: var(--azul-resalta);
+    color: black;
 }
 
