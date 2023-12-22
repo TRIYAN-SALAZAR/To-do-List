@@ -21,4 +21,6 @@
     background-color: white;
 
     z-index: 5;
+
+    visibility: hidden;
 }

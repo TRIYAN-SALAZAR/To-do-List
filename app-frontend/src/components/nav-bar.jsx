@@ -17,19 +17,14 @@ export default function NavBar() {
             </section>
             <section id='collections'>
                 <DefaultRenderAll />
-                <CollectionForNav />
-                <CollectionForNav />
-                <CollectionForNav />
-                <CollectionForNav />
-                <CollectionForNav />
-                <CollectionForNav />
+                <CollectionsForNav />
 
             </section>
         </nav>
     )
 }
 
-function CollectionForNav() {
+function CollectionsForNav() {
     return (
         <>
             <hr/>
