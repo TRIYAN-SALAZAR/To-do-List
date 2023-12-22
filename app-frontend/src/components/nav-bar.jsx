@@ -1,10 +1,11 @@
-import '../css/nav-Bar.css';
+import { useState } from 'react';
 
 import burguerIcon from '../assets/icons/burguer.svg';
 import createTaskIcon from '../assets/icons/Create_Task.svg';
 import createCollectionIcon from '../assets/icons/Create_Collection.svg';
 import deleteTasksOrCollectionsIcons from '../assets/icons/delete_tasks_or_collections.svg';
 
+import '../css/nav-Bar.css';
 
 export default function NavBar() {
     return (
@@ -18,13 +19,14 @@ export default function NavBar() {
             <section id='collections'>
                 <DefaultRenderAll />
                 <CollectionsForNav />
-
             </section>
         </nav>
     )
 }
 
 function CollectionsForNav() {
+    const [collection, setCollection] = useState(0);
+    
     return (
         <>
             <hr/>

@@ -5,9 +5,9 @@ section.CreateTaskForm {
     transform: translate(-50%, -50%);
 
     width: 25rem;
-    height: 25rem;
+    height: max-content;
 
-    background-color: red;
+    background-color: var(--azul-chido);
 
     display: flex;
     flex-direction: column;
@@ -17,11 +17,14 @@ section.CreateTaskForm {
     border-radius: 1rem;
     padding: 15px;
 
-    visibility: hidden;
+    visibility: visible;
 
 }
 
 section.CreateTaskForm form {
+
+    height: 100%;
+
     display: flex;
     flex-direction: column;
 
@@ -31,11 +34,75 @@ section.CreateTaskForm form {
     width: 100%;
     align-items: center;
 
-    background-color: white;
+    background-color: var(--azul-resalta);
 
     border-radius: 1rem;
 
     z-index: 10;
     position: relative;
 
+    & label {
+        font-size: 1.5rem;
+        font-family: 'Nunito', sans-serif;
+
+        margin-top: .5rem;
+    }
+
+    
+    
+    & input {
+        width: 80%;
+        height: 2rem;
+        
+        margin-top: 1rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    & input[type=text] {
+        cursor: text;
+    }
+
+    & textarea {
+        min-width: 80%;
+        max-width: 80%;
+        height: 10rem;
+
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+
+        resize: none;
+    }
+
+    & input[type=submit] {
+        margin-top: 1rem;
+
+        border-radius: 1rem;
+        background-color: var(--negro-complementario);
+
+        color: rgb(212, 212, 212);
+    }
+
+    & input[type=submit]:hover {
+        background-color: var(--azul-chido);
+        color: white;
+    }
+
+}
+
+.cancelCreateTask {
+    position: absolute;
+    top: 0;
+    right: 0rem;
+
+    width: 1.5rem;
+    height: 1.5rem;
+    border: 1px solid var(--rojo-chido);
+    border-radius: 1rem;
+
+    color: var(--rojo-chido);
+}
+
+.cancelCreateTask:hover {
+    background-color: var(--rojo-chido);
+    color: white;
 }

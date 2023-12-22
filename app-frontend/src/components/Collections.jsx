@@ -9,7 +9,7 @@ export default function Collection({title}) {
             <div className='relleno'></div>
             <div className='relleno'></div>
             <div className='relleno'></div>
-            <h5>{title}</h5>
+            <h5>{title ? title : 'default name' }</h5>
             <BtnEliminar />
         </section>
     )

@@ -8,10 +8,11 @@ export default function CreateTask() {
                 <input type="text" name="Title"/>
 
                 <label htmlFor="Description Task">Description</label>
-                <input type="text" name="Description Task" id="Description Task" />
+                <textarea name="Description Task" id="Description Task" cols="30" rows="10"></textarea>
 
                 <input type="submit" />
             </form>
+            <input type="button" value='x' className="cancelCreateTask"/>
         </section>
     );
 }

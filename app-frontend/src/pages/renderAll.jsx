@@ -23,7 +23,24 @@ export default function RenderAll() {
 function RenderTasks() {
   return (
     <>
-
+      <Tasks />
+      <Tasks />
+      <Tasks />
+      <Tasks />
+      <Tasks />
+      <Tasks />
+      <Tasks />
+      <Tasks />
+      <Tasks />
+      <Tasks />
+      <Tasks />
+      <Tasks />
+      <Tasks />
+      <Tasks />
+      <Tasks />
+      <Tasks />
+      <Tasks />
+      <Tasks />
     </>
   );
 }
@@ -31,7 +48,12 @@ function RenderTasks() {
 function RenderCollections() {
   return (
     <>
-      
+      <Collection title={'hpña'}/>
+      <Collection title={'hpña'}/>
+      <Collection />
+      <Collection />
+      <Collection title={'hpña'}/>
+      <Collection />
     </>
   )
 }
