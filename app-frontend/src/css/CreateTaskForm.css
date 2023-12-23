@@ -17,7 +17,7 @@ section.CreateTaskForm {
     border-radius: 1rem;
     padding: 15px;
 
-    visibility: visible;
+    visibility: hidden;
 
 }
 

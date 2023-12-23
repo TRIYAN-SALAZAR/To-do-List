@@ -6,6 +6,7 @@
 :root {
     --rojo-chido: #E63946;
     --azul-chido: #457B9D;
+    --azul-chido-2: #2d8dc9;
     --blanco-principal: #F1FAEE;
     --negro-complementario: #1D3557;
     --azul-resalta: #A8DADC;
@@ -24,4 +25,8 @@ div#root {
 
 input {
     cursor: pointer;
+}
+
+label {
+    cursor: text;
 }

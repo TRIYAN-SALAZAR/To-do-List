@@ -11,7 +11,7 @@ export default function CreateCollection() {
           <input type="submit" value="create" />
         </section>
         <section className="addTasksToCollectionOptional">
-          <label htmlFor="Add Tasks">Add Tasks</label>
+          <label htmlFor="Add Tasks" id="add-tasks">Add Tasks</label>
           <section className="listTasksForAdd">
             <TaskForAdd id={0}/>
             <TaskForAdd id={1}/>
