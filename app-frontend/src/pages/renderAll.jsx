@@ -16,6 +16,10 @@ export default function RenderAll() {
 
         <CreateCollection />
         <CreateTask />
+        <MessegeWarning 
+          Messege={"Example"}
+          typeMessage={"si"}
+        />
     </>
   );
 }
