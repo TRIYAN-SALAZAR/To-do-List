@@ -2,7 +2,7 @@ section.Collection {
     width: 15vw;
     height: 15vh;
 
-    background-color: beige;
+    background-color: transparent;
 
     float: left;
 
@@ -14,59 +14,122 @@ section.Collection {
 
     display: flexbox;
     position: relative;
+    transition: 1s;
 
-    border-radius: 1rem;
-}
-
-/* dibujar  una especie de ventana en la coleccion*/
-div.relleno {
-    width: 7.5vw;
-    height: 7.5vh;
-
-    padding: 0;
-    margin: 0;
-
-    position: absolute;
-
-    border: 3px solid black;
     border-radius: 1rem;
 
     user-select: none;
 
     cursor: pointer;
-    color: white;
 
-    background-color: rgb(166, 0, 216);
+    & div.relleno {
+        width: 7.5vw;
+        height: 7.5vh;
+    
+        padding: 0;
+        margin: 0;
+    
+        position: absolute;
+    
+        border: 3px solid black;
+        border-radius: 1rem;
+    
+        user-select: none;
+    
+        cursor: pointer;
+        color: white;
+    
+        background-color: var(--negro-complementario);
+    }
+    
+    & div.relleno:nth-child(1) {
+        z-index: 1;
+        top: 0;
+        left: 0;
+    }
+    
+    & div.relleno:nth-child(2) {
+        z-index: 1;
+        top: 0;
+        left: 7.5vw;
+    }
+    
+    & div.relleno:nth-child(3) {
+        z-index: 1;
+        top: 7.5vh;
+        left: 0;
+    }
+    
+    & div.relleno:nth-child(4) {
+        z-index: 1;
+        top: 7.5vh;
+        left: 7.5vw;
+    }
+    
+    & h5 {
+        position: absolute;
+        top: 16vh;
+    
+        width: 100%;
+        text-align: center;
+    }
 }
 
-div.relleno:nth-child(1) {
-    z-index: 1;
-    top: 0;
-    left: 0;
+/* animacion de relleno cuadro por cuadro*/
+
+section.Collection:hover div.relleno:nth-child(1) {
+    animation-name: relleno;
+    animation-iteration-count: 1;
+    animation-timing-function: linear;
+
+    animation-fill-mode: forwards;
+    animation-direction: normal;
+    animation-play-state: running;
+
+    animation-delay: 0s;
+    animation-duration: 1s;
 }
 
-div.relleno:nth-child(2) {
-    z-index: 1;
-    top: 0;
-    left: 7.5vw;
+section.Collection:hover div.relleno:nth-child(2) {
+    animation-name: relleno;
+    animation-iteration-count: 1;
+    animation-timing-function: linear; 
+
+    animation-fill-mode: forwards;
+    animation-direction: normal;
+    animation-play-state: running;
+
+    animation-delay: 0.5s;
+    animation-duration: 1s;
 }
 
-div.relleno:nth-child(3) {
-    z-index: 1;
-    top: 7.5vh;
-    left: 0;
+section.Collection:hover div.relleno:nth-child(3) {
+    animation-name: relleno;
+    animation-iteration-count: 1;
+    animation-timing-function: linear;
+
+    animation-fill-mode: forwards;
+    animation-direction: normal;
+    animation-play-state: running;
+
+    animation-delay: 1s;
+    animation-duration: 1s;
 }
 
-div.relleno:nth-child(4) {
-    z-index: 1;
-    top: 7.5vh;
-    left: 7.5vw;
+section.Collection:hover div.relleno:nth-child(4) {
+    animation-name: relleno;
+    animation-iteration-count: 1;
+    animation-timing-function: linear;
+
+    animation-fill-mode: forwards;
+    animation-direction: normal;
+    animation-play-state: running;
+
+    animation-delay: 1.5s;
+    animation-duration: 1s;
 }
 
-h5 {
-    position: absolute;
-    top: 16vh;
-
-    width: 100%;
-    text-align: center;
+@keyframes relleno {
+    0% {background-color: var(--negro-complementario);}
+    100% {background-color: var(--azul-chido-2);}
 }

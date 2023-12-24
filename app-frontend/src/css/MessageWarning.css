@@ -17,6 +17,8 @@
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 30;
+
+    visibility: hidden;
 }
 
 .defaulMessageWarning h3 {
@@ -43,21 +45,21 @@ section.buttoms-message-warning {
     margin: 0;
 
     & input {
-        border: none;
-
-        background-color: transparent;
-
+        
         cursor: pointer;
         font-family: 'Nunito', sans-serif;
-        font-size: 1.2rem;
-
+        font-size: 1.5rem;
+        
         margin: 0;
-
         padding: 0;
+        
+        border: none;
+        background-color: transparent;
 
-        &:hover {
-            text-decoration: underline;
+        &:focus {
+            outline: none;
         }
+
     }
 
     & input[value="sure"] {
@@ -66,10 +68,17 @@ section.buttoms-message-warning {
         margin-right: 1rem;
     }
 
+    & input[value="sure"]:hover {
+        color: var(--verde-chido2);
+    }
+
     & input[value="lies"] {
         color: var(--rojo-chido);
-
         margin-left: 1rem;
+    }
+
+    & input[value="lies"]:hover {
+        color: var(--rojo-chido2);
     }
 
 }

@@ -1,9 +1,9 @@
 .btn-eliminar {
     position: absolute;
 
-    border: 2px solid red;
+    border: 2px solid var(--rojo-chido);
     border-radius: 1rem;
-    color: red;
+    color: var(--rojo-chido);
 
     cursor: pointer;
 
@@ -22,5 +22,13 @@
 
     z-index: 5;
 
+    transition: 0.3s;
+
     visibility: hidden;
+}
+
+.btn-eliminar:hover {
+    background-color: var(--rojo-chido);
+    border-color: var(--rojo-chido);
+    color: white;
 }

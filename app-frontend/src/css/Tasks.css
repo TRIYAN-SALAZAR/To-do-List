@@ -2,10 +2,8 @@ section.Task {
     width: 15vw;
     height: 15vh;
 
-    background-color: rgb(187, 187, 183);
+    background-color: var(--negro-complementario);
     float: left;
-
-    /* border-radius: 1rem; */
 
     margin-top: 1.5rem;
     margin-bottom: 1.5rem;
@@ -17,6 +15,12 @@ section.Task {
     cursor: pointer;
     border: 1px solid black;
     border-radius: 1rem;
+
+    transition: 0.5s;
+}
+
+section.Task:hover {
+    background-color: var(--azul-chido-2);
 }
 
 h5 {
