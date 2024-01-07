@@ -1,75 +1,51 @@
+import axios from "axios";
+import { useState, useEffect } from "react";
+
 import Tasks from "../components/Tasks";
 import Collection from "../components/Collections";
 import CreateCollection from "../forms/CreateCollectionForm";
 import CreateTask from "../forms/CreateTaskForm";
 import MessegeWarning from "../components/MessageWarning";
 
-import axios from 'axios';
-
 import "../css/RenderAll.css";
 
-function getTasksAndCollections() {
-  const data = axios.get('http://127.0.0.1:3000/')
-    .then(response => console.table(response.data))
-    .catch(err => console.log(err))
-
-    return (data);
-}
 export default function RenderAll() {
+  const [dataServer, setDataServer] = useState(undefined);
 
-  getTasksAndCollections()
+  useEffect(() => {
+    const getData = async () => {
+      const tasksResponse = await axios.get("http://localhost:3000/");
 
-  return (
-    <>
-      <section id="render-all">
-        <RenderTasks />
-        <RenderCollections />        
-      </section>
+      setDataServer(tasksResponse.data);
+    };
 
+    getData();
+  }, []);
+
+  if (dataServer === undefined) {
+    return <div>Loading...</div>;
+  }
+
+  if (dataServer !== undefined) {
+    const renderTasks = dataServer.tasks.map((task) => {
+      return <Tasks title={task.title} key={task._id} />;
+    });
+
+    const renderCollections = dataServer.collections.map((collection) => {
+      return <Collection title={collection.title} key={collection._id} />;
+    });
+
+
+    return (
+      <>
         <CreateCollection />
         <CreateTask />
-        <MessegeWarning 
-          Messege={"Example"}
-          typeMessage={"si"}
-        />
-    </>
-  );
-}
-
-function RenderTasks() {
-  return (
-    <>
-      <Tasks />
-      <Tasks />
-      <Tasks />
-      <Tasks />
-      <Tasks />
-      <Tasks />
-      <Tasks />
-      <Tasks />
-      <Tasks />
-      <Tasks />
-      <Tasks />
-      <Tasks />
-      <Tasks />
-      <Tasks />
-      <Tasks />
-      <Tasks />
-      <Tasks />
-      <Tasks />
-    </>
-  );
-}
-
-function RenderCollections() {
-  return (
-    <>
-      <Collection title={'hpña'}/>
-      <Collection title={'hpña'}/>
-      <Collection />
-      <Collection />
-      <Collection title={'hpña'}/>
-      <Collection />
-    </>
-  )
+        <MessegeWarning />
+        <section className="RenderAll">
+          {renderTasks}
+          {renderCollections}
+        </section>
+      </>
+    );
+  }
 }

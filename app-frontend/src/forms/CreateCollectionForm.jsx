@@ -13,21 +13,6 @@ export default function CreateCollection() {
         <section className="addTasksToCollectionOptional">
           <label htmlFor="Add Tasks" id="add-tasks">Add Tasks</label>
           <section className="listTasksForAdd">
-            <TaskForAdd id={0}/>
-            <TaskForAdd id={1}/>
-            <TaskForAdd id={2}/>
-            <TaskForAdd id={3}/>
-            <TaskForAdd id={4}/>
-            <TaskForAdd id={5}/>
-            <TaskForAdd id={6}/>
-            <TaskForAdd id={7}/>
-            <TaskForAdd id={8}/>
-            <TaskForAdd id={9}/>
-            <TaskForAdd id={9}/>
-            <TaskForAdd id={9}/>
-            <TaskForAdd id={3}/>
-            <TaskForAdd id={3}/>
-            <TaskForAdd id={3}/>
           </section>
         </section>
       </form>
