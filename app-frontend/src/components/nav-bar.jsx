@@ -1,49 +1,64 @@
-import { useState } from 'react';
+import { useState } from "react";
+import CreateCollection from "../forms/CreateCollectionForm";
+import CreateTask from "../forms/CreateTaskForm";
 
-import burguerIcon from '../assets/icons/burguer.svg';
-import createTaskIcon from '../assets/icons/Create_Task.svg';
-import createCollectionIcon from '../assets/icons/Create_Collection.svg';
-import deleteTasksOrCollectionsIcons from '../assets/icons/delete_tasks_or_collections.svg';
-
-import '../css/nav-Bar.css';
+import "../css/nav-Bar.css";
 
 export default function NavBar() {
-    return (
-        <nav>
-            <section id='options'>
-                <button><img src={burguerIcon} alt="burguer.svg" /></button>
-                <button><img src={createTaskIcon} alt="Create_Task.svg" /></button>
-                <button><img src={createCollectionIcon} alt="Create_Collection.svg" /></button>
-                <button><img src={deleteTasksOrCollectionsIcons} alt="delete_tasks_or_collections.svg" /></button>
-            </section>
-            <section id='collections'>
-                <DefaultRenderAll />
-                <CollectionsForNav />
-            </section>
-        </nav>
-    )
+  const [showTask, setTask] = useState(false);
+  const [showCollection, setCollection] = useState(false);
+
+  return (
+    <>
+      <nav>
+        <section id="options">
+          <button
+            onClick={() => {
+              setTask(true);
+              setCollection(false);
+            }}
+          >
+            Create Task
+          </button>
+          <button
+            onClick={() => {
+              setCollection(true);
+              setTask(false);
+            }}
+          >
+            Create Collection
+          </button>
+        </section>
+        <section id="collections">
+          <DefaultRenderAll />
+          <CollectionsForNav />
+        </section>
+      </nav>
+
+      {showTask && <CreateTask setShowForm={setTask}/>}
+      {showCollection && <CreateCollection setShowForm={setCollection}/>}
+    </>
+  );
 }
 
 function CollectionsForNav() {
-    const [collection, setCollection] = useState(0);
-    
-    return (
-        <>
-            <hr/>
-            <section className='collection'>
-                <h3>title for collection</h3>            
-            </section>
-        </>
-    )
+  return (
+    <>
+      <hr />
+      <section className="collection">
+        <h3>title for collection</h3>
+      </section>
+    </>
+  );
 }
 
 function DefaultRenderAll() {
-    return (
-        <>
-            <hr/>
-            <section className='collection'>
-                <h3>Show All</h3>            
-            </section>
-        </>
-    )
+  return (
+    <>
+      <hr />
+      <section className="collection">
+        <h3>Show All</h3>
+      </section>
+    </>
+  );
 }

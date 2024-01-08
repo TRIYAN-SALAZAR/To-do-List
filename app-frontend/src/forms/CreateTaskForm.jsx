@@ -1,6 +1,6 @@
 import "../css/CreateTaskForm.css";
 
-export default function CreateTask() {
+export default function CreateTask({setShowForm}) {
     return (
         <section className="CreateTaskForm">
             <form>
@@ -12,7 +12,7 @@ export default function CreateTask() {
 
                 <input type="submit" />
             </form>
-            <input type="button" value='x' className="cancelCreateTask"/>
+            <input type="button" value='x' className="cancelCreateTask" onClick={() => setShowForm(false)}/>
         </section>
     );
 }

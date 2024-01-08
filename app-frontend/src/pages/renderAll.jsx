@@ -38,9 +38,6 @@ export default function RenderAll() {
 
     return (
       <>
-        <CreateCollection />
-        <CreateTask />
-        <MessegeWarning />
         <section className="RenderAll">
           {renderTasks}
           {renderCollections}

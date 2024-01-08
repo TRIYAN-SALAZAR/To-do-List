@@ -1,6 +1,6 @@
 import "../css/CreateCollectionForm.css";
 
-export default function CreateCollection() {
+export default function CreateCollection({setShowForm}) {
   return (
     <section className="CreateCollectionForm">
         <h3>Create Collection</h3>
@@ -16,7 +16,7 @@ export default function CreateCollection() {
           </section>
         </section>
       </form>
-      <section className="Close-Form-Collection-Create"><p>x</p></section>
+      <section className="Close-Form-Collection-Create" onClick={() => setShowForm(false)}><p>x</p></section>
     </section>
   );
 }
