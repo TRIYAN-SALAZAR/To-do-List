@@ -1,18 +1,49 @@
+import axios from "axios";
+
 import "../css/CreateTaskForm.css";
 
-export default function CreateTask({setShowForm}) {
-    return (
-        <section className="CreateTaskForm">
-            <form>
-                <label htmlFor="Title">Title</label>
-                <input type="text" name="Title"/>
+export default function CreateTask({ setShowForm }) {
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-                <label htmlFor="Description Task">Description</label>
-                <textarea name="Description Task" id="Description Task" cols="30" rows="10"></textarea>
+    const form = e.target;
 
-                <input type="submit" />
-            </form>
-            <input type="button" value='x' className="cancelCreateTask" onClick={() => setShowForm(false)}/>
-        </section>
-    );
+    const title = form.Title.value;
+    const description = form["Description Task"].value;
+
+    await axios.post("http://localhost:3000/tasks", {
+      title,
+      description,
+    });
+
+    setShowForm(false);
+
+    form.reset();
+    window.location.reload();
+  };
+
+  return (
+    <section className="CreateTaskForm">
+      <form onSubmit={handleSubmit}>
+        <label htmlFor="Title">Title</label>
+        <input type="text" name="Title" />
+
+        <label htmlFor="Description Task">Description</label>
+        <textarea
+          name="Description Task"
+          id="Description Task"
+          cols="30"
+          rows="10"
+        ></textarea>
+
+        <input type="submit" />
+      </form>
+      <input
+        type="button"
+        value="x"
+        className="cancelCreateTask"
+        onClick={() => setShowForm(false)}
+      />
+    </section>
+  );
 }

@@ -3,9 +3,6 @@ import { useState, useEffect } from "react";
 
 import Tasks from "../components/Tasks";
 import Collection from "../components/Collections";
-import CreateCollection from "../forms/CreateCollectionForm";
-import CreateTask from "../forms/CreateTaskForm";
-import MessegeWarning from "../components/MessageWarning";
 
 import "../css/RenderAll.css";
 
@@ -15,6 +12,9 @@ export default function RenderAll() {
   useEffect(() => {
     const getData = async () => {
       const tasksResponse = await axios.get("http://localhost:3000/");
+      if(tasksResponse.data === undefined) {
+        return;
+      }
 
       setDataServer(tasksResponse.data);
     };
