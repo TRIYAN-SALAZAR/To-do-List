@@ -33,18 +33,13 @@ export default function CreateCollection({ setShowForm }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     const form = e.target;
-
-    console.log("--------------------------------");
-    console.log(form);
-    console.log("--------------------------------");
-
-    console.log("+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~+");
     console.log(form["Title Collection"].value);
-    console.log("+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~+");
 
-    console.log(tasksSelected);
+    await axios.post("http://localhost:3000/collections",{
+      title: form["Title Collection"].value,
+      tasks: tasksSelected
+    });
   };
 
   if (tasks !== undefined) {
