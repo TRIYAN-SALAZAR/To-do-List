@@ -24,17 +24,17 @@ control.showTaskToCollection = async (req, res) => {
     const collectionID = req.params.idCollection;
 
     try {
-        const collection = await collectionSchema.findOne({_id: collectionID});
+        const collection = await collectionSchema.findOne({ _id: collectionID });
         const TASKS = [];
 
-        for(let task of collection.tasks) {
-           let aux = await taskSchema.findOne({ _id: task });
-           TASKS.push(aux);
+        for (let task of collection.tasks) {
+            let aux = await taskSchema.findOne({ _id: task });
+            TASKS.push(aux);
         }
 
-        return res.status(200).json({tasks: TASKS})
+        return res.status(200).json({ tasks: TASKS })
     }
-    catch(error) {
+    catch (error) {
         return res.status(500).json({ error: 'Server Internal Error' });
     }
 }

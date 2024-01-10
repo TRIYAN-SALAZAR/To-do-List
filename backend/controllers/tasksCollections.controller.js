@@ -26,9 +26,9 @@ control.createCollection = async (req, res) => {
         if (!collection) throw new Error('collection not created');
 
         if (tasksForAdd.length > 0) {
-            const tasksAdd = tasksForAdd.map( async (task) => await collectionSchema.updateOne({ _id: newCollection.id }, { $push: { tasks: new Types.ObjectId(task) } }));
+            const tasksAdd = tasksForAdd.map(async (task) => await collectionSchema.updateOne({ _id: newCollection.id }, { $push: { tasks: new Types.ObjectId(task) } }));
 
-            if(!tasksAdd) throw new Error('tasks not add in collection');
+            if (!tasksAdd) throw new Error('tasks not add in collection');
 
             return res.status(200).json({
                 message: 'collection created',

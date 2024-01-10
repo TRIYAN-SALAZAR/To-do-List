@@ -55,7 +55,7 @@ control.createTask = async (req, res) => {
             title: titleTask,
             description: descriptionTask,
             completed: false,
-            defaultCollection: collection != '' ? true : false 
+            defaultCollection: collection != '' ? true : false
         });
 
         const task = await newTask.save();
