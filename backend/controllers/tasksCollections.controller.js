@@ -15,20 +15,26 @@ control.getCollections = async (req, res) => {
 
 control.createCollection = async (req, res) => {
     const title = req.body.title;
+    const tasksForAdd = req.body.tasks;
 
     try {
 
         if (!title) return res.status(400).json({ message: 'title is required' });
 
-        const newCollection = new collectionSchema({ title: title });
-        const collection = await newCollection.save();
+        if (tasksForAdd.length > 0) {
+            
+        } else {
+            const newCollection = new collectionSchema({ title: title });
+            const collection = await newCollection.save();
 
-        if (!collection) throw new Error('collection not created');
+            if (!collection) throw new Error('collection not created');
 
-        return res.status(200).json({
-            message: 'collection created',
-            id: newCollection.id
-        });
+            return res.status(200).json({
+                message: 'collection created',
+                id: newCollection.id
+            });
+
+        }
     }
     catch (error) {
         return res.status(500).json({

@@ -5,7 +5,7 @@ import "../css/CreateCollectionForm.css";
 
 export default function CreateCollection({ setShowForm }) {
   const [tasks, setTasks] = useState([]);
-  const [taskSelected, setTaskSelected] = useState([]);
+  const [tasksSelected, setTaskSelected] = useState([]);
 
   useEffect(() => {
     const getData = async () => {
@@ -44,7 +44,7 @@ export default function CreateCollection({ setShowForm }) {
     console.log(form["Title Collection"].value);
     console.log("+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~+");
 
-    console.log(form["Add Tasks"]);
+    console.log(tasksSelected);
   };
 
   if (tasks !== undefined) {
@@ -55,7 +55,7 @@ export default function CreateCollection({ setShowForm }) {
           key={t._id}
           _id={t._id}
           onCheckBoxChange={handleCheckBoxChange}
-          isSelected={taskSelected.includes(t._id)}
+          isSelected={tasksSelected.includes(t._id)}
         />
       );
     });
