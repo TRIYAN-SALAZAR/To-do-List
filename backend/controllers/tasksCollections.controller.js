@@ -18,22 +18,28 @@ control.createCollection = async (req, res) => {
     const tasksForAdd = req.body.tasks;
 
     try {
-
         if (!title) return res.status(400).json({ message: 'title is required' });
 
-        if (tasksForAdd.length > 0) {
-            
-        } else {
-            const newCollection = new collectionSchema({ title: title });
-            const collection = await newCollection.save();
+        const newCollection = new collectionSchema({ title: title });
+        const collection = await newCollection.save();
 
-            if (!collection) throw new Error('collection not created');
+        if (!collection) throw new Error('collection not created');
+
+        if (tasksForAdd.length > 0) {
+            const tasksAdd = tasksForAdd.map( async (task) => await collectionSchema.updateOne({ _id: newCollection.id }, { $push: { tasks: new Types.ObjectId(task) } }));
+
+            if(!tasksAdd) throw new Error('tasks not add in collection');
 
             return res.status(200).json({
                 message: 'collection created',
                 id: newCollection.id
             });
+        } else {
 
+            return res.status(200).json({
+                message: 'collection created',
+                id: newCollection.id
+            });
         }
     }
     catch (error) {
