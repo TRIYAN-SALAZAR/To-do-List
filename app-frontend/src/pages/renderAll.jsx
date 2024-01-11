@@ -28,7 +28,7 @@ export default function RenderAll() {
 
   if (dataServer !== undefined) {
     const renderTasks = dataServer.tasks.map((task) => {
-      return <Tasks title={task.title} key={task._id} />;
+      return <Tasks title={task.title} key={task._id} taskId={task._id} />;
     });
 
     const renderCollections = dataServer.collections.map((collection) => {

@@ -1,0 +1,16 @@
+section.container-main {
+    width: 45%;
+    height: 90%;
+    background-color: var(--azul-chido-2);
+    display: flex;
+    flex-direction: column;
+
+    position: fixed;
+
+    top: 50%;
+    left: 50%;  
+    translate: -50% -50%;
+
+    border-radius: 1rem;
+    
+}
