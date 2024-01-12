@@ -4,7 +4,7 @@ import axios from "axios";
 import "../css/ShowTask.css";
 
 export default function ShowTask({ taskId, setHiddenTask }) {
-  const [title, setTitle] = useState("Title of Task");
+  const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [task, setTask] = useState({});
 
@@ -18,7 +18,7 @@ export default function ShowTask({ taskId, setHiddenTask }) {
 
   useEffect(() => {
     const getTask = async () => {
-      const { data } = await axios.get("http://127.0.0.1:3000/tasks/" + taskId);
+      const { data } = await axios.get('http://127.0.0.1:3000/tasks/' + taskId);
       if (data === undefined) return;
       console.log(data);
       setTask(data.task);
@@ -29,9 +29,24 @@ export default function ShowTask({ taskId, setHiddenTask }) {
     getTask();
   }, [taskId]);
 
+  const updateTask = async (event) => {
+    event.preventDefault();
+    const title = event.target['title-task'].value;
+    const description = event.target['description'].value;
+
+    await axios.put('http://127.0.0.1:3000/tasks/', {
+      id: taskId,
+      title: title,
+      description: description,
+      completed: false
+    })
+
+
+  }
+
   return (
     <section className="container-main">
-      <form>
+      <form onSubmit={updateTask}>
         <label htmlFor="title-task"></label>
         <input
           type="text"
@@ -50,7 +65,7 @@ export default function ShowTask({ taskId, setHiddenTask }) {
         ></textarea>
 
         <section className="btn-confirmar-o-cancelar">
-          <input type="buttom" value="Confirmar" className="confirm" />
+          <input type="submit" value="Confirmar" className="confirm" />
           <input
             type="buttom"
             value="cancelar"

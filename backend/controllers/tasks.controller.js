@@ -83,7 +83,7 @@ control.updateTask = async (req, res) => {
             description,
             completed
         } = req.body;
-        const update = await taskSchema.updateOne({ id: id }, { title: title, description: description, completed: completed });
+        const update = await taskSchema.updateOne({ _id: id }, { title: title, description: description, completed: completed });
 
         if (update.matchedCount === 0) return sendErrorResponse(res, { message: `task not updated by not found task` }, 404);
 
