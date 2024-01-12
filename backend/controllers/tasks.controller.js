@@ -24,11 +24,11 @@ control.getTasks = async (req, res) => {
 control.getOneTask = async (req, res) => {
     try {
         const idTask = req.params.id;
-        const task = await taskSchema.findOne({ id: idTask });
+        const task = await taskSchema.findOne({ _id: idTask });
 
         if (task === null) return sendErrorResponse(res, { message: 'task not found' }, 404);
 
-        res.status(200).json({ task })
+        return res.status(200).json({ task })
     }
     catch (error) {
         return sendErrorResponse(res, { message: 'task not found', error: error }, 500);

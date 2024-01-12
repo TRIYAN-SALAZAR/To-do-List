@@ -17,7 +17,7 @@ export default function Tasks({ title = "default", taskId }) {
     >
       <h5>{title}</h5>
       {active && <BtnEliminar />}
-      {showTask && <ShowTask id={taskId} setHiddenTask={setShowTask}/>}
+      {showTask && <ShowTask taskId={taskId} setHiddenTask={setShowTask}/>}
     </section>
   );
 }

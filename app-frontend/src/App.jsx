@@ -1,6 +1,5 @@
 import NavBar from './components/nav-bar';
 import RenderAll from './pages/RenderAll';
-import ShowTask from './components/ShowTask';
 
 import './App.css'
 
@@ -9,7 +8,6 @@ function App() {
     <>
       <NavBar />
       <RenderAll />
-      <ShowTask />
     </>
   )
 }
