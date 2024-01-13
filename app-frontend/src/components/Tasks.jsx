@@ -17,7 +17,7 @@ export default function Tasks({ title = "default", taskId }) {
         onClick={() => setShowTask(true)}
       >
         <h5>{title}</h5>
-        {active && <BtnEliminar />}
+        {active && <BtnEliminar idToEliminate={taskId} taskOrCollection={'tasks'}/>}
       </section>
       {showTask && <ShowTask taskId={taskId} setHiddenTask={setShowTask} />}
     </>

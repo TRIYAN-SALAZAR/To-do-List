@@ -101,7 +101,7 @@ control.updateTask = async (req, res) => {
 control.deletedTask = async (req, res) => {
     try {
         const id = req.body.id
-        const deleteTask = await taskSchema.deleteOne({ id: id });
+        const deleteTask = await taskSchema.deleteOne({ _id: id });
 
         if (deleteTask.deletedCount === 0) return sendErrorResponse(res, { message: `task not deleted by not found task` }, 404);
 

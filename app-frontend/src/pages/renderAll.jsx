@@ -12,7 +12,7 @@ export default function RenderAll() {
   useEffect(() => {
     const getData = async () => {
       const tasksResponse = await axios.get("http://localhost:3000/");
-      if(tasksResponse.data === undefined) {
+      if (tasksResponse.data === undefined) {
         return;
       }
 
@@ -32,9 +32,14 @@ export default function RenderAll() {
     });
 
     const renderCollections = dataServer.collections.map((collection) => {
-      return <Collection title={collection.title} key={collection._id} />;
+      return (
+        <Collection
+          title={collection.title}
+          key={collection._id}
+          collectionId={collection._id}
+        />
+      );
     });
-
 
     return (
       <>
